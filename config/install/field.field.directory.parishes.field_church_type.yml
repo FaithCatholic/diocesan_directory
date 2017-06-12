@@ -1,0 +1,21 @@
+uuid: 423aa065-5463-408d-8a52-8888014de066
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_church_type
+  module:
+    - options
+id: directory.parishes.field_church_type
+field_name: field_church_type
+entity_type: directory
+bundle: parishes
+label: 'Church Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

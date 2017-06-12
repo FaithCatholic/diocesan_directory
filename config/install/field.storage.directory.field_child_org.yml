@@ -1,0 +1,19 @@
+uuid: 9389ba95-2ae0-464e-8612-5c1ab7f39c6b
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+id: directory.field_child_org
+field_name: field_child_org
+entity_type: directory
+type: entity_reference
+settings:
+  target_type: directory
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,19 @@
+uuid: 97a56232-69bc-40b1-ad79-27f69762924c
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_email
+id: directory.schools.field_email
+field_name: field_email
+entity_type: directory
+bundle: schools
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

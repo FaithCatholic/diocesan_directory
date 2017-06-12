@@ -1,0 +1,23 @@
+uuid: 27508c8e-4f81-4575-beb7-ecfdb22408b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_website
+  module:
+    - link
+id: directory.parishes.field_website
+field_name: field_website
+entity_type: directory
+bundle: parishes
+label: Website
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

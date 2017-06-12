@@ -1,0 +1,21 @@
+uuid: e057863f-ebc1-4cce-94ac-159f6f0049bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_vicariate
+  module:
+    - options
+id: directory.parishes.field_vicariate
+field_name: field_vicariate
+entity_type: directory
+bundle: parishes
+label: Vicariate
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,21 @@
+uuid: b93f2f24-dfb8-4d47-a31d-1c029d865be6
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_county
+  module:
+    - options
+id: directory.parishes.field_county
+field_name: field_county
+entity_type: directory
+bundle: parishes
+label: County
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

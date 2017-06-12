@@ -1,0 +1,21 @@
+uuid: a4584158-3bbf-48d7-a252-b325ccecac38
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - field.storage.directory.field_fax
+  module:
+    - telephone
+id: directory.agencies.field_fax
+field_name: field_fax
+entity_type: directory
+bundle: agencies
+label: Fax
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

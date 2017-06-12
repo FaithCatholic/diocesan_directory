@@ -1,0 +1,16 @@
+{
+  "name": "drupal/diocesan_directory",
+  "type": "drupal-module",
+  "description": "Diocesan parishes, schools, agencies, etc...",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/diocesan_directory",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/diocesan_directory",
+    "source": "http://cgit.drupalcode.org/diocesan_directory"
+  },
+  "require": {
+    "drupal/field_group": "^1.0"
+  }
+}

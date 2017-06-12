@@ -1,0 +1,21 @@
+uuid: 2f0a2dd0-4780-4f53-b1be-cf423f4bb4ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_general_info
+  module:
+    - text
+id: directory.schools.field_general_info
+field_name: field_general_info
+entity_type: directory
+bundle: schools
+label: 'General Info'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

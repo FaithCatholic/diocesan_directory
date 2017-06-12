@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Contains diocesan_directory.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function diocesan_directory_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the diocesan_directory module.
+    case 'help.page.diocesan_directory':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Diocesan parishes, schools, agencies, etc...') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function diocesan_directory_theme() {
+  $theme = [];
+  $theme['directory'] = [
+    'render element' => 'elements',
+    'file' => 'directory.page.inc',
+    'template' => 'directory',
+  ];
+  $theme['directory_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'directory.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+* Implements hook_theme_suggestions_HOOK().
+*/
+function diocesan_directory_theme_suggestions_directory(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#directory'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'directory__' . $sanitized_view_mode;
+  $suggestions[] = 'directory__' . $entity->bundle();
+  $suggestions[] = 'directory__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'directory__' . $entity->id();
+  $suggestions[] = 'directory__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}

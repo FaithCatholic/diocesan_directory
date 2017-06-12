@@ -1,0 +1,21 @@
+uuid: b30032d0-3eed-48ac-9399-4efd479ab7fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_fax
+  module:
+    - telephone
+id: directory.schools.field_fax
+field_name: field_fax
+entity_type: directory
+bundle: schools
+label: Fax
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

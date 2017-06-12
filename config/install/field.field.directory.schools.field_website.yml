@@ -1,0 +1,23 @@
+uuid: 871b6e67-8f27-4cb6-9d7c-fac0add21fc2
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_website
+  module:
+    - link
+id: directory.schools.field_website
+field_name: field_website
+entity_type: directory
+bundle: schools
+label: Website
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

@@ -1,0 +1,23 @@
+# Directory routing definition
+
+entity.directory.canonical:
+  route_name: entity.directory.canonical
+  base_route: entity.directory.canonical
+  title: 'View'
+
+entity.directory.edit_form:
+  route_name: entity.directory.edit_form
+  base_route: entity.directory.canonical
+  title: 'Edit'
+
+entity.directory.version_history:
+  route_name: entity.directory.version_history
+  base_route: entity.directory.canonical
+  title: 'Revisions'
+
+entity.directory.delete_form:
+  route_name:  entity.directory.delete_form
+  base_route:  entity.directory.canonical
+  title: Delete
+  weight: 10
+

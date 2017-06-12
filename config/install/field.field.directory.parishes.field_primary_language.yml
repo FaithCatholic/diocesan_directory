@@ -1,0 +1,21 @@
+uuid: dda5408d-557f-4538-920b-c996093641dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_primary_language
+id: directory.parishes.field_primary_language
+field_name: field_primary_language
+entity_type: directory
+bundle: parishes
+label: 'Primary Language'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: English
+default_value_callback: ''
+settings: {  }
+field_type: string

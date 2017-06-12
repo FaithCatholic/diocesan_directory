@@ -1,0 +1,6 @@
+uuid: 20a825b7-2cdd-434f-8244-389d4c31fc84
+langcode: en
+status: true
+dependencies: {  }
+id: schools
+label: Schools

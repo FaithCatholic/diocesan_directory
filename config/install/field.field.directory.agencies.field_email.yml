@@ -1,0 +1,19 @@
+uuid: ed13017e-1d14-48ee-b19d-31bfd996b71f
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - field.storage.directory.field_email
+id: directory.agencies.field_email
+field_name: field_email
+entity_type: directory
+bundle: agencies
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

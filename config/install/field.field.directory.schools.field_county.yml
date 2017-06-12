@@ -1,0 +1,21 @@
+uuid: 8b5482eb-acc0-4970-a09a-a9c09f08626e
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_county
+  module:
+    - options
+id: directory.schools.field_county
+field_name: field_county
+entity_type: directory
+bundle: schools
+label: County
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

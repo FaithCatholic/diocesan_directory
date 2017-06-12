@@ -1,0 +1,19 @@
+uuid: a904f127-1f0f-435d-a7fb-f8c6c4658fd0
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_email
+id: directory.parishes.field_email
+field_name: field_email
+entity_type: directory
+bundle: parishes
+label: Email
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

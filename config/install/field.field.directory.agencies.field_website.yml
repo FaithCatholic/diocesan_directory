@@ -1,0 +1,23 @@
+uuid: 6fba5620-c48a-41ac-9804-102739960152
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - field.storage.directory.field_website
+  module:
+    - link
+id: directory.agencies.field_website
+field_name: field_website
+entity_type: directory
+bundle: agencies
+label: Website
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

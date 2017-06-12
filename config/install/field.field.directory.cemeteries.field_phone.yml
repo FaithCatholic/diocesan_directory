@@ -1,0 +1,21 @@
+uuid: 888d5268-aee5-42e0-9b4c-3401962c7dc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.cemeteries
+    - field.storage.directory.field_phone
+  module:
+    - telephone
+id: directory.cemeteries.field_phone
+field_name: field_phone
+entity_type: directory
+bundle: cemeteries
+label: Phone
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

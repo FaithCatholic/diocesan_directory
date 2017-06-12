@@ -1,0 +1,21 @@
+uuid: fe6154dc-f175-4cdc-bdd6-aea833d195ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.cemeteries
+    - field.storage.directory.field_general_info
+  module:
+    - text
+id: directory.cemeteries.field_general_info
+field_name: field_general_info
+entity_type: directory
+bundle: cemeteries
+label: 'General Info'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

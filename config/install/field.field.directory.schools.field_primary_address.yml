@@ -1,0 +1,36 @@
+uuid: 4a050f11-b0d1-4b50-b9ac-438685e0f629
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_primary_address
+  module:
+    - address
+id: directory.schools.field_primary_address
+field_name: field_primary_address
+entity_type: directory
+bundle: schools
+label: 'Primary Address'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries:
+    US: US
+  fields:
+    administrativeArea: administrativeArea
+    locality: locality
+    postalCode: postalCode
+    sortingCode: sortingCode
+    addressLine1: addressLine1
+    addressLine2: addressLine2
+    dependentLocality: '0'
+    organization: '0'
+    givenName: '0'
+    additionalName: '0'
+    familyName: '0'
+  langcode_override: ''
+field_type: address

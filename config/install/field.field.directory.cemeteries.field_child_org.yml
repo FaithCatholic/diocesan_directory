@@ -1,0 +1,27 @@
+uuid: 1cb4e538-6012-4aa7-af56-00b7bd98a6bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.cemeteries
+    - field.storage.directory.field_child_org
+id: directory.cemeteries.field_child_org
+field_name: field_child_org
+entity_type: directory
+bundle: cemeteries
+label: 'Child Org(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:directory'
+  handler_settings:
+    target_bundles:
+      cemeteries: cemeteries
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,19 @@
+uuid: fdf591af-122a-4f1f-9277-e8bffcdeb452
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_year_established
+id: directory.parishes.field_year_established
+field_name: field_year_established
+entity_type: directory
+bundle: parishes
+label: 'Year Established'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

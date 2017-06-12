@@ -1,0 +1,21 @@
+uuid: 7bc75da0-4d4f-4fcf-a56b-2ca5e5db1aca
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_fax
+  module:
+    - telephone
+id: directory.parishes.field_fax
+field_name: field_fax
+entity_type: directory
+bundle: parishes
+label: Fax
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

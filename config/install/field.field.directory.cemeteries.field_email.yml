@@ -1,0 +1,19 @@
+uuid: b4c22329-a4d8-4621-a93d-96ffe9c63bd4
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.cemeteries
+    - field.storage.directory.field_email
+id: directory.cemeteries.field_email
+field_name: field_email
+entity_type: directory
+bundle: cemeteries
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

@@ -1,0 +1,21 @@
+uuid: a1fdcf0a-859d-4907-9dd8-a4aafcb26832
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+id: directory.field_primary_language
+field_name: field_primary_language
+entity_type: directory
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

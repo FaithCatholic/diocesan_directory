@@ -1,0 +1,27 @@
+uuid: 8309615d-08c0-4e7b-a2e4-aebf93723b2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_parent_org
+id: directory.parishes.field_parent_org
+field_name: field_parent_org
+entity_type: directory
+bundle: parishes
+label: 'Parent Org'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:directory'
+  handler_settings:
+    target_bundles:
+      parishes: parishes
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: agencies
+field_type: entity_reference

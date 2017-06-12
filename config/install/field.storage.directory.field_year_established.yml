@@ -1,0 +1,21 @@
+uuid: ebf8bd9d-0d11-4069-8780-b37c62f2d38c
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+id: directory.field_year_established
+field_name: field_year_established
+entity_type: directory
+type: string
+settings:
+  max_length: 4
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,19 @@
+uuid: 5a94655e-56db-488b-b639-a7aba64a8537
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - field.storage.directory.field_name
+id: directory.agencies.field_name
+field_name: field_name
+entity_type: directory
+bundle: agencies
+label: Name
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

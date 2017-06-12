@@ -1,0 +1,19 @@
+uuid: 8c24806c-db1f-4d98-b18f-9a59c0cb3334
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+    - telephone
+id: directory.field_phone
+field_name: field_phone
+entity_type: directory
+type: telephone
+settings: {  }
+module: telephone
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

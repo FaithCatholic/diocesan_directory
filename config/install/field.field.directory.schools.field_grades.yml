@@ -1,0 +1,19 @@
+uuid: 6d3d5845-f44b-4ef1-8278-e7e040cb6f0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_grades
+id: directory.schools.field_grades
+field_name: field_grades
+entity_type: directory
+bundle: schools
+label: Grades
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

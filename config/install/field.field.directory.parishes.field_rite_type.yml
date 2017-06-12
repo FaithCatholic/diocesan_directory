@@ -1,0 +1,23 @@
+uuid: 59ea878b-30ab-4ed3-b0c8-102db28108ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_rite_type
+  module:
+    - options
+id: directory.parishes.field_rite_type
+field_name: field_rite_type
+entity_type: directory
+bundle: parishes
+label: 'Rite Type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: roman-latin
+default_value_callback: ''
+settings: {  }
+field_type: list_string

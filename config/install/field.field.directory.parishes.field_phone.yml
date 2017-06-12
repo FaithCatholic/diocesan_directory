@@ -1,0 +1,21 @@
+uuid: 4fce8b71-23f2-4be9-9fe6-1dba2c66799e
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_phone
+  module:
+    - telephone
+id: directory.parishes.field_phone
+field_name: field_phone
+entity_type: directory
+bundle: parishes
+label: Phone
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

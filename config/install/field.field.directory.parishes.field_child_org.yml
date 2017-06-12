@@ -1,0 +1,33 @@
+uuid: 85b019c0-55b5-4926-9b96-1572ca2e45b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - diocesan_directory.directory_type.cemeteries
+    - diocesan_directory.directory_type.parishes
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_child_org
+id: directory.parishes.field_child_org
+field_name: field_child_org
+entity_type: directory
+bundle: parishes
+label: 'Child Org(s)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:directory'
+  handler_settings:
+    target_bundles:
+      agencies: agencies
+      cemeteries: cemeteries
+      parishes: parishes
+      schools: schools
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: agencies
+field_type: entity_reference

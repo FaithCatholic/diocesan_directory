@@ -1,0 +1,207 @@
+uuid: 7ebb20f5-bc10-40a2-ac2e-89411263a13e
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.field.directory.parishes.field_additional_languages
+    - field.field.directory.parishes.field_child_org
+    - field.field.directory.parishes.field_church_type
+    - field.field.directory.parishes.field_county
+    - field.field.directory.parishes.field_email
+    - field.field.directory.parishes.field_fax
+    - field.field.directory.parishes.field_general_info
+    - field.field.directory.parishes.field_mailing_address
+    - field.field.directory.parishes.field_mass_times_parish_id
+    - field.field.directory.parishes.field_name
+    - field.field.directory.parishes.field_parent_org
+    - field.field.directory.parishes.field_parish_id
+    - field.field.directory.parishes.field_phone
+    - field.field.directory.parishes.field_picture
+    - field.field.directory.parishes.field_primary_address
+    - field.field.directory.parishes.field_primary_language
+    - field.field.directory.parishes.field_rite_type
+    - field.field.directory.parishes.field_vicariate
+    - field.field.directory.parishes.field_website
+    - field.field.directory.parishes.field_year_established
+  module:
+    - address
+    - link
+    - options
+    - text
+    - user
+id: directory.parishes.default
+targetEntityType: directory
+bundle: parishes
+mode: default
+content:
+  field_additional_languages:
+    weight: 18
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_child_org:
+    weight: 20
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_church_type:
+    weight: 14
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_county:
+    weight: 11
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_email:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_fax:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_general_info:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_mailing_address:
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_mass_times_parish_id:
+    weight: 13
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_name:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_parent_org:
+    weight: 19
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_parish_id:
+    weight: 12
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_phone:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_picture:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_primary_address:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_primary_language:
+    weight: 17
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_rite_type:
+    weight: 15
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_vicariate:
+    weight: 16
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_website:
+    weight: 7
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_year_established:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

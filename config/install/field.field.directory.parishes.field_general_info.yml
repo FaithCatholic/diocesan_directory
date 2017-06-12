@@ -1,0 +1,21 @@
+uuid: e651b106-1b83-421f-9207-a8e0f98485cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_general_info
+  module:
+    - text
+id: directory.parishes.field_general_info
+field_name: field_general_info
+entity_type: directory
+bundle: parishes
+label: 'General Info'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

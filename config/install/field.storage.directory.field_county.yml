@@ -1,0 +1,21 @@
+uuid: 71e89c25-d5c9-4751-9df6-dbad4823c003
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+    - options
+id: directory.field_county
+field_name: field_county
+entity_type: directory
+type: list_string
+settings:
+  allowed_values: {  }
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

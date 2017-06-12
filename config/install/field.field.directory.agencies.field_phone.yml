@@ -1,0 +1,21 @@
+uuid: 1b28065f-0d1a-430e-98e7-7d5535598dbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - field.storage.directory.field_phone
+  module:
+    - telephone
+id: directory.agencies.field_phone
+field_name: field_phone
+entity_type: directory
+bundle: agencies
+label: Phone
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

@@ -1,0 +1,138 @@
+uuid: 23e62b6e-d79a-4381-b359-b3bb132adda6
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - field.field.directory.agencies.field_child_org
+    - field.field.directory.agencies.field_county
+    - field.field.directory.agencies.field_email
+    - field.field.directory.agencies.field_fax
+    - field.field.directory.agencies.field_general_info
+    - field.field.directory.agencies.field_mailing_address
+    - field.field.directory.agencies.field_name
+    - field.field.directory.agencies.field_parent_org
+    - field.field.directory.agencies.field_phone
+    - field.field.directory.agencies.field_primary_address
+    - field.field.directory.agencies.field_website
+    - field.field.directory.agencies.field_year_established
+  module:
+    - address
+    - link
+    - options
+    - text
+    - user
+id: directory.agencies.default
+targetEntityType: directory
+bundle: agencies
+mode: default
+content:
+  field_child_org:
+    weight: 12
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_county:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_email:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_fax:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_general_info:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_mailing_address:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_name:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_parent_org:
+    weight: 11
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_phone:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_primary_address:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_website:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_year_established:
+    weight: 10
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

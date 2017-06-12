@@ -1,0 +1,21 @@
+uuid: 514ad952-6fe7-476f-9919-743038caebef
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_picture
+id: directory.parishes.field_picture
+field_name: field_picture
+entity_type: directory
+bundle: parishes
+label: Picture
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings: {  }
+field_type: entity_reference

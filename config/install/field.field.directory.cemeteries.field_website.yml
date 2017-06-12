@@ -1,0 +1,23 @@
+uuid: b5942043-daf1-4de2-87c1-d3cc31c368f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.cemeteries
+    - field.storage.directory.field_website
+  module:
+    - link
+id: directory.cemeteries.field_website
+field_name: field_website
+entity_type: directory
+bundle: cemeteries
+label: Website
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

@@ -1,0 +1,31 @@
+uuid: 8cdb17c4-750e-44f8-97c0-c835d8e83598
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - diocesan_directory.directory_type.parishes
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_parent_org
+id: directory.agencies.field_parent_org
+field_name: field_parent_org
+entity_type: directory
+bundle: agencies
+label: 'Parent Org'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:directory'
+  handler_settings:
+    target_bundles:
+      agencies: agencies
+      parishes: parishes
+      schools: schools
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: agencies
+field_type: entity_reference

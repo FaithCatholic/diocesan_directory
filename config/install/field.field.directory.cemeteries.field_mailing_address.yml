@@ -1,0 +1,36 @@
+uuid: 862e5765-3736-4f9b-9ad2-5bb5040f7bae
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.cemeteries
+    - field.storage.directory.field_mailing_address
+  module:
+    - address
+id: directory.cemeteries.field_mailing_address
+field_name: field_mailing_address
+entity_type: directory
+bundle: cemeteries
+label: 'Mailing Address'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries:
+    US: US
+  fields:
+    administrativeArea: administrativeArea
+    locality: locality
+    postalCode: postalCode
+    sortingCode: sortingCode
+    addressLine1: addressLine1
+    addressLine2: addressLine2
+    dependentLocality: '0'
+    organization: '0'
+    givenName: '0'
+    additionalName: '0'
+    familyName: '0'
+  langcode_override: ''
+field_type: address

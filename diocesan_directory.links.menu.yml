@@ -1,0 +1,17 @@
+
+# Directory menu items definition
+entity.directory.collection:
+  title: 'Directory listings'
+  route_name: entity.directory.collection
+  description: 'Browse directory listings'
+  parent: system.admin_content
+  weight: 100
+
+
+# Directory type menu items definition
+entity.directory_type.collection:
+  title: 'Directory categories'
+  route_name: entity.directory_type.collection
+  description: 'Manage directory categories e.g. parishes, schools, etc.'
+  parent: system.admin_structure
+  weight: 0

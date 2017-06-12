@@ -1,0 +1,21 @@
+uuid: 7714cce9-966f-47cb-b0b2-64359577fea5
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - field.storage.directory.field_general_info
+  module:
+    - text
+id: directory.agencies.field_general_info
+field_name: field_general_info
+entity_type: directory
+bundle: agencies
+label: 'General Info'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

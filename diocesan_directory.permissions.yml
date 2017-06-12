@@ -1,0 +1,33 @@
+add directory entities:
+  title: 'Create new Directory entities'
+
+administer directory entities:
+  title: 'Administer Directory entities'
+  description: 'Allow to access the administration form to configure Directory entities.'
+  restrict access: true
+
+delete directory entities:
+  title: 'Delete Directory entities'
+
+edit directory entities:
+  title: 'Edit Directory entities'
+
+access directory overview:
+  title: 'Access the Directory overview page'
+
+view published directory entities:
+  title: 'View published Directory entities'
+
+view unpublished directory entities:
+  title: 'View unpublished Directory entities'
+
+view all directory revisions:
+  title: 'View all Directory revisions'
+
+revert all directory revisions:
+  title: 'Revert all Directory revisions'
+  description: 'Role requires permission <em>view Directory revisions</em> and <em>edit rights</em> for directory entities in question or <em>administer directory entities</em>.'
+
+delete all directory revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Directory revisions</em> and <em>delete rights</em> for directory entities in question or <em>administer directory entities</em>.'

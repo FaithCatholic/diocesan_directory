@@ -1,0 +1,57 @@
+uuid: f1352fe1-8f4c-4d0e-9d0f-0aa4f71fb3ad
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+    - options
+id: directory.field_church_type
+field_name: field_church_type
+entity_type: directory
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: airport
+      label: Airport
+    -
+      value: basilica
+      label: Basilica
+    -
+      value: cathedral
+      label: Cathedral
+    -
+      value: chapel
+      label: Chapel
+    -
+      value: college
+      label: College/University
+    -
+      value: military-base
+      label: 'Military Base'
+    -
+      value: mission
+      label: Mission
+    -
+      value: oratory
+      label: Oratory-Other
+    -
+      value: orginization
+      label: Organization
+    -
+      value: parish
+      label: Parish
+    -
+      value: pastoral-center
+      label: 'Pastoral Center'
+    -
+      value: shrine
+      label: Shrine
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

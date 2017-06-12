@@ -1,0 +1,19 @@
+uuid: 8ec9009a-2ec6-4aa1-a069-dcd05a717e78
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_mass_times_parish_id
+id: directory.parishes.field_mass_times_parish_id
+field_name: field_mass_times_parish_id
+entity_type: directory
+bundle: parishes
+label: 'Mass Times Parish ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,5 @@
+name: Diocesan Directory
+type: module
+description: Diocesan parishes, schools, agencies, etc...
+core: 8.x
+package: Custom

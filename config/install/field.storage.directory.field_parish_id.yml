@@ -1,0 +1,21 @@
+uuid: 50b4bba6-2f72-4e15-bd75-9e8ba5031202
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+id: directory.field_parish_id
+field_name: field_parish_id
+entity_type: directory
+type: string
+settings:
+  max_length: 8
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

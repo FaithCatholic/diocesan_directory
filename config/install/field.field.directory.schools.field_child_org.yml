@@ -1,0 +1,29 @@
+uuid: 934962fa-228a-4c03-ad25-b01a19207093
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_child_org
+id: directory.schools.field_child_org
+field_name: field_child_org
+entity_type: directory
+bundle: schools
+label: 'Child Org(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:directory'
+  handler_settings:
+    target_bundles:
+      agencies: agencies
+      schools: schools
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: agencies
+field_type: entity_reference

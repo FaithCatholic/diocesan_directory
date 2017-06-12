@@ -1,0 +1,205 @@
+uuid: 2b130a77-15d5-478b-8606-f84fb36ccc8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.field.directory.schools.field_child_org
+    - field.field.directory.schools.field_county
+    - field.field.directory.schools.field_email
+    - field.field.directory.schools.field_fax
+    - field.field.directory.schools.field_general_info
+    - field.field.directory.schools.field_grades
+    - field.field.directory.schools.field_mailing_address
+    - field.field.directory.schools.field_name
+    - field.field.directory.schools.field_parent_org
+    - field.field.directory.schools.field_phone
+    - field.field.directory.schools.field_primary_address
+    - field.field.directory.schools.field_website
+    - field.field.directory.schools.field_year_established
+  module:
+    - address
+    - field_group
+    - link
+    - telephone
+    - text
+third_party_settings:
+  field_group:
+    group_school_info:
+      children:
+        - group_basic_info
+        - group_contact_info
+        - group_addresses
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: 'School Info'
+    group_basic_info:
+      children:
+        - name
+        - field_name
+        - field_year_established
+        - field_grades
+        - field_parent_org
+        - field_child_org
+        - field_general_info
+      parent_name: group_school_info
+      weight: 4
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: open
+        description: ''
+        required_fields: true
+      label: 'Basic Info'
+    group_contact_info:
+      children:
+        - field_phone
+        - field_fax
+        - field_email
+        - field_website
+      parent_name: group_school_info
+      weight: 5
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: 'Contact Info'
+    group_addresses:
+      children:
+        - field_county
+        - field_mailing_address
+        - field_primary_address
+      parent_name: group_school_info
+      weight: 6
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Addresses
+id: directory.schools.default
+targetEntityType: directory
+bundle: schools
+mode: default
+content:
+  field_child_org:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_county:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_email:
+    weight: 16
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_fax:
+    weight: 15
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: content
+  field_general_info:
+    weight: 7
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_grades:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_mailing_address:
+    weight: 13
+    settings:
+      default_country: null
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_name:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_parent_org:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_phone:
+    weight: 14
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: content
+  field_primary_address:
+    weight: 14
+    settings:
+      default_country: null
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_website:
+    weight: 17
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_year_established:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  user_id: true

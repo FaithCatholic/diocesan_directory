@@ -1,0 +1,19 @@
+uuid: 541d98e4-c0c0-4691-af85-37c3c87ab7dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.cemeteries
+    - field.storage.directory.field_name
+id: directory.cemeteries.field_name
+field_name: field_name
+entity_type: directory
+bundle: cemeteries
+label: Name
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

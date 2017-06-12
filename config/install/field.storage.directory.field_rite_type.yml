@@ -1,0 +1,72 @@
+uuid: acdff3ce-184c-4e5f-824c-6201d427e647
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+    - options
+id: directory.field_rite_type
+field_name: field_rite_type
+entity_type: directory
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: roman-latin
+      label: Roman-Latin
+    -
+      value: armenian
+      label: Armenian
+    -
+      value: byzantine
+      label: Byzantine
+    -
+      value: chaldean
+      label: Chaldean
+    -
+      value: lithuanian
+      label: Lithuanian
+    -
+      value: maronite
+      label: Maronite
+    -
+      value: melkite
+      label: Melkite
+    -
+      value: romanian
+      label: Romanian
+    -
+      value: syrian
+      label: Syrian
+    -
+      value: syro-malabar
+      label: Syro-Malabar
+    -
+      value: syro-malankara
+      label: Syro-Malankara
+    -
+      value: ukrainian
+      label: Ukrainian
+    -
+      value: coptic
+      label: Coptic
+    -
+      value: slovakian
+      label: Slovakian
+    -
+      value: ethiopian
+      label: Ethiopian
+    -
+      value: melkite-greek
+      label: 'Melkite Greek'
+    -
+      value: eastern
+      label: Eastern
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

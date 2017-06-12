@@ -1,0 +1,270 @@
+uuid: 785db63c-0ddf-44cf-af7c-c6f9ff9dc850
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.field.directory.parishes.field_additional_languages
+    - field.field.directory.parishes.field_child_org
+    - field.field.directory.parishes.field_church_type
+    - field.field.directory.parishes.field_county
+    - field.field.directory.parishes.field_email
+    - field.field.directory.parishes.field_fax
+    - field.field.directory.parishes.field_general_info
+    - field.field.directory.parishes.field_mailing_address
+    - field.field.directory.parishes.field_mass_times_parish_id
+    - field.field.directory.parishes.field_name
+    - field.field.directory.parishes.field_parent_org
+    - field.field.directory.parishes.field_parish_id
+    - field.field.directory.parishes.field_phone
+    - field.field.directory.parishes.field_picture
+    - field.field.directory.parishes.field_primary_address
+    - field.field.directory.parishes.field_primary_language
+    - field.field.directory.parishes.field_rite_type
+    - field.field.directory.parishes.field_vicariate
+    - field.field.directory.parishes.field_website
+    - field.field.directory.parishes.field_year_established
+  module:
+    - address
+    - field_group
+    - link
+    - telephone
+    - text
+third_party_settings:
+  field_group:
+    group_parish_listing:
+      children:
+        - group_basic_info
+        - group_contact_info
+        - group_addresses
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: 'Parish Listing'
+    group_basic_info:
+      children:
+        - name
+        - field_name
+        - field_year_established
+        - field_church_type
+        - field_vicariate
+        - field_parent_org
+        - field_child_org
+        - field_general_info
+        - field_picture
+        - field_primary_language
+        - field_additional_languages
+        - field_rite_type
+        - field_mass_times_parish_id
+        - field_parish_id
+      parent_name: group_parish_listing
+      weight: 20
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: open
+        description: ''
+        required_fields: true
+      label: 'Basic Info'
+    group_contact_info:
+      children:
+        - field_phone
+        - field_fax
+        - field_website
+        - field_email
+      parent_name: group_parish_listing
+      weight: 21
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: 'Contact Info'
+    group_addresses:
+      children:
+        - field_county
+        - field_primary_address
+        - field_mailing_address
+      parent_name: group_parish_listing
+      weight: 22
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Addresses
+id: directory.parishes.default
+targetEntityType: directory
+bundle: parishes
+mode: default
+content:
+  field_additional_languages:
+    weight: 25
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_child_org:
+    weight: 21
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_church_type:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_county:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_email:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_fax:
+    weight: 7
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: content
+  field_general_info:
+    weight: 22
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_mailing_address:
+    weight: 14
+    settings:
+      default_country: null
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_mass_times_parish_id:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_name:
+    weight: 16
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_parent_org:
+    weight: 20
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_parish_id:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_phone:
+    weight: 6
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: content
+  field_picture:
+    weight: 23
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_primary_address:
+    weight: 13
+    settings:
+      default_country: null
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_primary_language:
+    weight: 24
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_rite_type:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_vicariate:
+    weight: 19
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_website:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_year_established:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 15
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  user_id: true

@@ -1,0 +1,19 @@
+uuid: ec38f36d-63d6-4051-93ac-565f3ec2ff7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_name
+id: directory.schools.field_name
+field_name: field_name
+entity_type: directory
+bundle: schools
+label: 'School Name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

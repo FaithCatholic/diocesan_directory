@@ -1,0 +1,21 @@
+uuid: 7089f12f-a782-49df-9592-4a9ff93775a6
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+id: directory.field_grades
+field_name: field_grades
+entity_type: directory
+type: string
+settings:
+  max_length: 10
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

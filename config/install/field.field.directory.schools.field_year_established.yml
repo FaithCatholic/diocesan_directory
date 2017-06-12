@@ -1,0 +1,19 @@
+uuid: 8880d3ed-1121-4baa-a225-4be0bf71fbc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.schools
+    - field.storage.directory.field_year_established
+id: directory.schools.field_year_established
+field_name: field_year_established
+entity_type: directory
+bundle: schools
+label: 'Year Established'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

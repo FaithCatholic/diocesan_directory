@@ -1,0 +1,21 @@
+uuid: baf26747-9f12-4ffd-b48e-7fc5955955bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.cemeteries
+    - field.storage.directory.field_fax
+  module:
+    - telephone
+id: directory.cemeteries.field_fax
+field_name: field_fax
+entity_type: directory
+bundle: cemeteries
+label: Fax
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

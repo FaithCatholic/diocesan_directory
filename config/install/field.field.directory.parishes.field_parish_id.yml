@@ -1,0 +1,19 @@
+uuid: 8072ff6f-fc7c-4a18-bb1e-ce2ee63bb419
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.parishes
+    - field.storage.directory.field_parish_id
+id: directory.parishes.field_parish_id
+field_name: field_parish_id
+entity_type: directory
+bundle: parishes
+label: 'Parish ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

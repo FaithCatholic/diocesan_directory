@@ -1,0 +1,21 @@
+uuid: 18a9ac60-505d-4b38-b592-ac8f0b92da29
+langcode: en
+status: true
+dependencies:
+  config:
+    - diocesan_directory.directory_type.agencies
+    - field.storage.directory.field_county
+  module:
+    - options
+id: directory.agencies.field_county
+field_name: field_county
+entity_type: directory
+bundle: agencies
+label: County
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
