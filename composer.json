@@ -1,5 +1,5 @@
 {
-  "name": "drupal/diocesan_directory",
+  "name": "faithcatholic/diocesan_directory",
   "type": "drupal-module",
   "description": "Diocesan parishes, schools, agencies, etc...",
   "keywords": ["Drupal"],
