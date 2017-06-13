@@ -7,7 +7,6 @@ entity.directory.collection:
   parent: system.admin_content
   weight: 100
 
-
 # Directory type menu items definition
 entity.directory_type.collection:
   title: 'Directory categories'
@@ -15,3 +14,39 @@ entity.directory_type.collection:
   description: 'Manage directory categories e.g. parishes, schools, etc.'
   parent: system.admin_structure
   weight: 0
+
+entity.agencies.add_form:
+  title: 'Agencies'
+  route_name: entity.directory.add_form
+  description: 'Add an agency'
+  parent: entity.directory.collection
+  weight: 0
+  route_parameters:
+    directory_type: agencies
+
+entity.cemeteries.add_form:
+  title: 'Cemeteries'
+  route_name: entity.directory.add_form
+  description: 'Add a cemetery'
+  parent: entity.directory.collection
+  weight: 0
+  route_parameters:
+    directory_type: cemeteries
+
+entity.parishes.add_form:
+  title: 'Parishes'
+  route_name: entity.directory.add_form
+  description: 'Add a parish'
+  parent: entity.directory.collection
+  weight: 0
+  route_parameters:
+    directory_type: parishes
+
+entity.schools.add_form:
+  title: 'Schools'
+  route_name: entity.directory.add_form
+  description: 'Add a school'
+  parent: entity.directory.collection
+  weight: 0
+  route_parameters:
+    directory_type: schools
