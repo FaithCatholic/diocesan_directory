@@ -24,5 +24,5 @@ entity.directory.delete_form:
 entity.directory.collection:
   title: 'Directory listings'
   base_route: system.admin_content
-  route_name: entity.directory.collection
+  route_name: view.admin_directory.page_1
   weight: 10
