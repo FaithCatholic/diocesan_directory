@@ -53,7 +53,7 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/admin/content/directory/{directory}",
+ *     "canonical" = "/directory/{directory}",
  *     "add-page" = "/admin/content/directory/add",
  *     "add-form" = "/admin/content/directory/add/{directory_type}",
  *     "edit-form" = "/admin/content/directory/{directory}/edit",
