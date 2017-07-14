@@ -2,7 +2,7 @@
 # Directory menu items definition
 entity.directory.collection:
   title: 'Directory listings'
-  route_name: entity.directory.collection
+  route_name: view.admin_directory.page_1
   description: 'Browse directory listings'
   parent: system.admin_content
   weight: 100
