@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - diocesan_directory
+    - mass_times
+id: mass_times.field_parish
+field_name: field_parish
+entity_type: mass_times
+type: entity_reference
+settings:
+  target_type: directory
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
