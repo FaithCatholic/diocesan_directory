@@ -213,7 +213,7 @@ class DefaultEntity extends RevisionableContentEntityBase implements DefaultEnti
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
-      ->setDescription(t('The name of the organization.'))
+      ->setDescription(t('The name of the organization. This name is not displayed to the public, but is used internally to identify this entry. Name-Location is the suggested format.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 50,
