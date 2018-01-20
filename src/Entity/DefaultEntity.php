@@ -256,4 +256,15 @@ class DefaultEntity extends RevisionableContentEntityBase implements DefaultEnti
     return $fields;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  protected function urlRouteParameters($rel) {
+    $uri_route_parameters = parent::urlRouteParameters($rel);
+    if (in_array($rel, ['revision', 'revision_revert', 'translation_revert', "revision_delete"]) && !isset($uri_route_parameters['directory_revision'])) {
+      $uri_route_parameters['directory_revision'] = TRUE;
+    }
+    return $uri_route_parameters;
+   }
 }
+
