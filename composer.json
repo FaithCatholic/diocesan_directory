@@ -3,7 +3,6 @@
   "type": "drupal-module",
   "description": "Diocesan parishes, schools, agencies, etc...",
   "keywords": ["Drupal"],
-  "license": "GPL-2.0+",
   "homepage": "https://www.drupal.org/project/diocesan_directory",
   "minimum-stability": "dev",
   "support": {
