@@ -10,6 +10,6 @@
     "source": "http://cgit.drupalcode.org/diocesan_directory"
   },
   "require": {
-    "drupal/field_group": "^1.0"
+    "drupal/field_group": "^3.0"
   }
 }
