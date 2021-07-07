@@ -57,7 +57,7 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('directory'),
+      $container->get('entity_type.manager')->getStorage('directory'),
       $container->get('date.formatter')
     );
   }
@@ -120,7 +120,7 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
     $this->revision->save();
 
     $this->logger('content')->notice('Directory: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('Directory %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
+    \Drupal\Core\Messenger\MessengerInterface::addMessage(t('Directory %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
     $form_state->setRedirect(
       'entity.directory.version_history',
       ['directory' => $this->revision->id()]
@@ -141,7 +141,7 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(DefaultEntityInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(REQUEST_TIME);
+    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
 
     return $revision;
   }

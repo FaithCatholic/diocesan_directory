@@ -44,7 +44,7 @@ class DefaultEntityForm extends ContentEntityForm {
       $entity->setNewRevision();
 
       // If a new revision is created, save the current user as revision author.
-      $entity->setRevisionCreationTime(REQUEST_TIME);
+      $entity->setRevisionCreationTime(\Drupal::time()->getRequestTime());
       $entity->setRevisionUserId(\Drupal::currentUser()->id());
     }
     else {
@@ -55,13 +55,13 @@ class DefaultEntityForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Directory.', [
+        \Drupal\Core\Messenger\MessengerInterface::addMessage($this->t('Created the %label Directory.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label Directory.', [
+        \Drupal\Core\Messenger\MessengerInterface::addMessage($this->t('Saved the %label Directory.', [
           '%label' => $entity->label(),
         ]));
     }

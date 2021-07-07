@@ -27,8 +27,8 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
    *   An array suitable for drupal_render().
    */
   public function revisionShow($directory_revision) {
-    $directory = $this->entityManager()->getStorage('directory')->loadRevision($directory_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('directory');
+    $directory = $this->entityTypeManager()->getStorage('directory')->loadRevision($directory_revision);
+    $view_builder = $this->entityTypeManager()->getViewBuilder('directory');
 
     return $view_builder->view($directory);
   }
@@ -43,8 +43,8 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
    *   The page title.
    */
   public function revisionPageTitle($directory_revision) {
-    $directory = $this->entityManager()->getStorage('directory')->loadRevision($directory_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $directory->label(), '%date' => format_date($directory->getRevisionCreationTime())]);
+    $directory = $this->entityTypeManager()->getStorage('directory')->loadRevision($directory_revision);
+    return $this->t('Revision of %title from %date', ['%title' => $directory->label(), '%date' => \Drupal::service('date.formatter')->format($directory->getRevisionCreationTime())]);
   }
 
   /**
@@ -62,7 +62,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
     $langname = $directory->language()->getName();
     $languages = $directory->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $directory_storage = $this->entityManager()->getStorage('directory');
+    $directory_storage = $this->entityTypeManager()->getStorage('directory');
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $directory->label()]) : $this->t('Revisions for %title', ['%title' => $directory->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
@@ -90,10 +90,10 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $directory->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.directory.revision', ['directory' => $directory->id(), 'directory_revision' => $vid]));
+          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.directory.revision', ['directory' => $directory->id(), 'directory_revision' => $vid]));
         }
         else {
-          $link = $directory->link($date);
+          $link = \Drupal\Core\EntityInterface::toLink($date)->toString();
         }
 
         $row = [];

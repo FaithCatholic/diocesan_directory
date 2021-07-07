@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Routing\LinkGeneratorTrait;
 use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Defines a class to build a listing of Directory entities.
@@ -13,8 +14,6 @@ use Drupal\Core\Url;
  * @ingroup diocesan_directory
  */
 class DefaultEntityListBuilder extends EntityListBuilder {
-
-  use LinkGeneratorTrait;
 
   /**
    * {@inheritdoc}
@@ -31,14 +30,7 @@ class DefaultEntityListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\diocesan_directory\Entity\DefaultEntity */
     $row['id'] = $entity->id();
-    $row['name'] = $this->l(
-      $entity->label(),
-      new Url(
-        'entity.directory.edit_form', [
-          'directory' => $entity->id(),
-        ]
-      )
-    );
+    $row['name'] = \Drupal\Core\Link::fromTextAndUrl($entity->label(), new Url('entity.directory.edit_form', ['directory' => $entity->id(),]));
     return $row + parent::buildRow($entity);
   }
 
