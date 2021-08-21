@@ -55,13 +55,13 @@ class DefaultEntityForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        \Drupal\Core\Messenger\MessengerInterface::addMessage($this->t('Created the %label Directory.', [
+        \Drupal::messenger()->addMessage($this->t('Created the %label Directory.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal\Core\Messenger\MessengerInterface::addMessage($this->t('Saved the %label Directory.', [
+        \Drupal::messenger()->addMessage($this->t('Saved the %label Directory.', [
           '%label' => $entity->label(),
         ]));
     }
