@@ -56,3 +56,10 @@ function diocesan_directory_theme_suggestions_directory(array $variables) {
   $suggestions[] = 'directory__' . $entity->id() . '__' . $sanitized_view_mode;
   return $suggestions;
 }
+
+function diocesan_directory_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Make name field longer.
+  if ($form_id == 'directory_parishes_add_form' || $form_id == 'directory_parishes_edit_form') {
+    $form['name']['widget'][0]['value']['#maxlength'] = 255;
+  }
+}s
