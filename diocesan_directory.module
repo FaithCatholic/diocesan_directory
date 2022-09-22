@@ -62,4 +62,4 @@ function diocesan_directory_form_alter(&$form, \Drupal\Core\Form\FormStateInterf
   if ($form_id == 'directory_parishes_add_form' || $form_id == 'directory_parishes_edit_form') {
     $form['name']['widget'][0]['value']['#maxlength'] = 255;
   }
-}s
+}
