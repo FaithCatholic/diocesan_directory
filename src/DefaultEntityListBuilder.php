@@ -4,7 +4,6 @@ namespace Drupal\diocesan_directory;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Routing\LinkGeneratorTrait;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
 
