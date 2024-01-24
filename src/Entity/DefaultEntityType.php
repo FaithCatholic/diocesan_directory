@@ -40,6 +40,10 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *     "edit-form" = "/admin/structure/directory_type/{directory_type}/edit",
  *     "delete-form" = "/admin/structure/directory_type/{directory_type}/delete",
  *     "collection" = "/admin/structure/directory_type"
+ *   },
+ *   config_export= {
+ *     "id",
+ *     "label",
  *   }
  * )
  */
