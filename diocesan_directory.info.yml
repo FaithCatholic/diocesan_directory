@@ -1,8 +1,7 @@
 name: Diocesan Directory
 type: module
 description: Diocesan parishes, schools, agencies, etc...
-core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^8.8 || ^9 || ^10
 package: Custom
 dependencies:
   - address
