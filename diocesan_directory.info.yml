@@ -1,14 +1,14 @@
-name: Diocesan Directory
+name: 'Diocesan Directory'
 type: module
-description: Diocesan parishes, schools, agencies, etc...
-core_version_requirement: ^8.8 || ^9 || ^10
+description: 'Diocesan parishes, schools, agencies, etc...'
+core_version_requirement: ^8.8 || ^9 || ^10 || ^11
 package: Custom
 dependencies:
-  - address
-  - field_group
-  - link
-  - telephone
-  - text
-  - options
-  - user
-  - node
+  - address:address
+  - field_group:field_group
+  - drupal:link
+  - drupal:telephone
+  - drupal:text
+  - drupal:options
+  - drupal:user
+  - drupal:node
