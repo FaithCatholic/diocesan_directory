@@ -6,7 +6,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class DefaultEntitySettingsForm.
+ * Settings form for the Directory entity type.
  *
  * @package Drupal\diocesan_directory\Form
  *

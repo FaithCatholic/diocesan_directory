@@ -103,8 +103,8 @@ class DefaultEntity extends RevisionableContentEntityBase implements DefaultEnti
       }
     }
 
-    // If no revision author has been set explicitly, make the directory owner the
-    // revision author.
+    // If no revision author has been set explicitly, make the directory owner
+    // the revision author.
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
     }

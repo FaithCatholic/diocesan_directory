@@ -6,7 +6,7 @@ use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class DefaultEntityTypeForm.
+ * Form handler for adding and editing Directory type config entities.
  *
  * @package Drupal\diocesan_directory\Form
  */

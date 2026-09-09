@@ -2,10 +2,10 @@
 
 namespace Drupal\diocesan_directory\Controller;
 
-use Drupal\Core\Link;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\diocesan_directory\Entity\DefaultEntityInterface;
 
@@ -45,7 +45,10 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
    */
   public function revisionPageTitle($directory_revision) {
     $directory = $this->entityTypeManager()->getStorage('directory')->loadRevision($directory_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $directory->label(), '%date' => \Drupal::service('date.formatter')->format($directory->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', [
+      '%title' => $directory->label(),
+      '%date' => \Drupal::service('date.formatter')->format($directory->getRevisionCreationTime()),
+    ]);
   }
 
   /**
@@ -65,7 +68,12 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
     $has_translations = (count($languages) > 1);
     $directory_storage = $this->entityTypeManager()->getStorage('directory');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $directory->label()]) : $this->t('Revisions for %title', ['%title' => $directory->label()]);
+    $build['#title'] = $has_translations
+      ? $this->t('@langname revisions for %title', [
+        '@langname' => $langname,
+        '%title' => $directory->label(),
+      ])
+      : $this->t('Revisions for %title', ['%title' => $directory->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
     $revert_permission = (($account->hasPermission("revert all directory revisions") || $account->hasPermission('administer directory entities')));
@@ -91,7 +99,10 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $directory->getRevisionId()) {
-          $link = Link::fromTextAndUrl($date, new Url('entity.directory.revision', ['directory' => $directory->id(), 'directory_revision' => $vid]));
+          $link = Link::fromTextAndUrl($date, new Url('entity.directory.revision', [
+            'directory' => $directory->id(),
+            'directory_revision' => $vid,
+          ]));
         }
         else {
           $link = $directory->toLink($date)->toString();
@@ -129,16 +140,26 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
           if ($revert_permission) {
             $links['revert'] = [
               'title' => $this->t('Revert'),
-              'url' => $has_translations ?
-              Url::fromRoute('entity.directory.translation_revert', ['directory' => $directory->id(), 'directory_revision' => $vid, 'langcode' => $langcode]) :
-              Url::fromRoute('entity.directory.revision_revert', ['directory' => $directory->id(), 'directory_revision' => $vid]),
+              'url' => $has_translations
+                ? Url::fromRoute('entity.directory.translation_revert', [
+                  'directory' => $directory->id(),
+                  'directory_revision' => $vid,
+                  'langcode' => $langcode,
+                ])
+                : Url::fromRoute('entity.directory.revision_revert', [
+                  'directory' => $directory->id(),
+                  'directory_revision' => $vid,
+                ]),
             ];
           }
 
           if ($delete_permission) {
             $links['delete'] = [
               'title' => $this->t('Delete'),
-              'url' => Url::fromRoute('entity.directory.revision_delete', ['directory' => $directory->id(), 'directory_revision' => $vid]),
+              'url' => Url::fromRoute('entity.directory.revision_delete', [
+                'directory' => $directory->id(),
+                'directory_revision' => $vid,
+              ]),
             ];
           }
 

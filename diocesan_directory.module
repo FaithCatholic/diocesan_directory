@@ -59,7 +59,7 @@ function diocesan_directory_theme_suggestions_directory(array $variables) {
 }
 
 /**
- *
+ * Implements hook_form_alter().
  */
 function diocesan_directory_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Make name field longer.

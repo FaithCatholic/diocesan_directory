@@ -30,7 +30,7 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $DefaultEntityStorage;
+  protected $defaultEntityStorage;
 
   /**
    * The date formatter service.
@@ -48,7 +48,7 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
    *   The date formatter service.
    */
   public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
-    $this->DefaultEntityStorage = $entity_storage;
+    $this->defaultEntityStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -101,7 +101,7 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $directory_revision = NULL) {
-    $this->revision = $this->DefaultEntityStorage->loadRevision($directory_revision);
+    $this->revision = $this->defaultEntityStorage->loadRevision($directory_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -119,8 +119,14 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
     $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
-    $this->logger('content')->notice('Directory: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    $this->messenger()->addMessage(t('Directory %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
+    $this->logger('content')->notice('Directory: reverted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId(),
+    ]);
+    $this->messenger()->addMessage(t('Directory %title has been reverted to the revision from %revision-date.', [
+      '%title' => $this->revision->label(),
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp),
+    ]));
     $form_state->setRedirect(
       'entity.directory.version_history',
       ['directory' => $this->revision->id()]

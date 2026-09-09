@@ -29,7 +29,7 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $DefaultEntityStorage;
+  protected $defaultEntityStorage;
 
   /**
    * The database connection.
@@ -47,7 +47,7 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
    *   The database connection.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
-    $this->DefaultEntityStorage = $entity_storage;
+    $this->defaultEntityStorage = $entity_storage;
     $this->connection = $connection;
   }
 
@@ -94,7 +94,7 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $directory_revision = NULL) {
-    $this->revision = $this->DefaultEntityStorage->loadRevision($directory_revision);
+    $this->revision = $this->defaultEntityStorage->loadRevision($directory_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -104,10 +104,16 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->DefaultEntityStorage->deleteRevision($this->revision->getRevisionId());
+    $this->defaultEntityStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Directory: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    $this->messenger()->addMessage(t('Revision from %revision-date of Directory %title has been deleted.', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->logger('content')->notice('Directory: deleted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId(),
+    ]);
+    $this->messenger()->addMessage(t('Revision from %revision-date of Directory %title has been deleted.', [
+      '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%title' => $this->revision->label(),
+    ]));
     $form_state->setRedirect(
       'entity.directory.canonical',
        ['directory' => $this->revision->id()]
