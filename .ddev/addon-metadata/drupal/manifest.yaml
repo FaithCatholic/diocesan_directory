@@ -1,0 +1,11 @@
+name: drupal
+repository: https://github.com/hanoii/ddev-drupal/tarball/main
+version: ""
+dependencies:
+    - pimp-my-shell
+install_date: "2026-09-09T18:33:03-03:00"
+project_files:
+    - pimp-my-shell/
+    - drupal/
+global_files: []
+removal_actions: []

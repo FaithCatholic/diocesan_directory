@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+/web/
+/vendor/
+/recipes
+/phpcs.xml.dist
+/phpstan*
+/.editorconfig
+/.gitattributes

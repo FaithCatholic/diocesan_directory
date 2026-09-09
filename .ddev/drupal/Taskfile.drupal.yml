@@ -1,0 +1,26 @@
+#ddev-generated
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+silent: true
+
+vars:
+  COMPOSER_ROOT: ""
+  WEB_ROOT: web
+  CONFIG_DIR: config
+
+tasks:
+  composer:reset:
+    desc: Remove Composer-installed dependencies so composer install starts clean
+    cmds:
+      - .ddev/drupal/scripts/composer-reset.sh "{{.COMPOSER_ROOT}}" "{{.WEB_ROOT}}"
+
+  composer:needed:
+    desc: Report which composer drupal modules are active in config
+    cmds:
+      - .ddev/drupal/scripts/composer-needed.sh "{{.COMPOSER_ROOT}}" "{{.CONFIG_DIR}}"
+
+  drush:uli:
+    desc: A fancier drush:uli for our own ahoy commands
+    cmds:
+      - .ddev/drupal/scripts/drush-uli.sh {{.CLI_ARGS}}

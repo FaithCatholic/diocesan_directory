@@ -1,0 +1,11 @@
+name: ddev-drupal-contrib-extras
+repository: https://github.com/hanoii/ddev-drupal-contrib-extras/tarball/main
+version: ""
+dependencies:
+    - ddev/ddev-drupal-contrib
+install_date: "2026-09-09T18:33:01-03:00"
+project_files:
+    - commands/
+    - drupal-contrib-extras/
+global_files: []
+removal_actions: []

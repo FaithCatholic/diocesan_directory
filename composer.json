@@ -11,5 +11,11 @@
   },
   "require": {
     "drupal/field_group": "^3.0 || ^4.0"
+  },
+  "require-dev": {
+    "drupal/devel": "*",
+    "drupal/address": "*",
+    "drupal/field_group": "*",
+    "drush/drush": "*"
   }
 }

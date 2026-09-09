@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+#ddev-generated
+## Command provided by https://github.com/hanoii/ddev-drupal-contrib-extras
+## Original author: https://github.com/jameswilson/ddev-drupal-contrib/tree/cspell
+## Description: Run cspell inside the web container
+## Usage: cspell [flags] [args]
+## Example: "ddev cspell" or "ddev cspell --version"
+## ExecRaw: true
+
+# Set up environment variables for the cspell configuration generator.
+# These variables are used by the prepare-cspell.php script to customize
+# the spell checking configuration for this Drupal project. These variables
+# may be personalized in the .ddev/config.yaml file.
+export CI_PROJECT_NAME="$DDEV_SITENAME"
+export _WEB_ROOT="$DDEV_COMPOSER_ROOT/$DDEV_DOCROOT"
+export _CSPELL_DICTIONARY=${_CSPELL_DICTIONARY:-.cspell-project-words.txt}
+export _CSPELL_IGNORE_PATHS=${_CSPELL_IGNORE_PATHS:-"$DDEV_DOCROOT,.ddev,config/sync"}
+
+# Check if cspell is available. Support both traditional node_modules and Yarn PnP.
+# Yarn 4+ defaults to PnP which doesn't create node_modules/.bin/ binaries.
+CORE_DIR="$DDEV_COMPOSER_ROOT/$DDEV_DOCROOT/core"
+CSPELL_BIN="$CORE_DIR/node_modules/.bin/cspell"
+USE_YARN_PNP=false
+
+if $CSPELL_BIN --version >/dev/null 2>&1; then
+  # Traditional node_modules mode.
+  CSPELL="$CSPELL_BIN"
+elif (cd "$CORE_DIR" && yarn cspell --version) >/dev/null 2>&1; then
+  # Yarn PnP mode - must cd into core directory for Corepack to detect Yarn 4.
+  USE_YARN_PNP=true
+  CSPELL="yarn cspell"
+else
+  echo "cspell is not available. You may need to 'ddev exec \"cd $DDEV_DOCROOT/core && yarn cache clean && yarn install\"'"
+  exit 1
+fi
+
+# Helper function to run cspell, handling PnP mode which requires cd to core.
+run_cspell() {
+  if [ "$USE_YARN_PNP" = true ]; then
+    (cd "$CORE_DIR" && $CSPELL "$@")
+  else
+    $CSPELL "$@"
+  fi
+}
+
+if [ "$1" = "--version" ]; then
+  run_cspell --version
+  exit $?
+fi
+
+# Initialize required configuration files if they don't exist.
+# Track which files we create so we can clean them up later.
+TMP_DICTIONARY=$(test -e $_CSPELL_DICTIONARY ; echo $?)
+TMP_CONFIG=$(test -e .cspell.json; echo $?)
+touch $_CSPELL_DICTIONARY
+test -e .cspell.json || curl -OLs https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/assets/.cspell.json
+
+# Download and run the Drupal-specific cspell configuration generator.
+# This script creates a temporary config file (.cspell.json.ddev) to avoid
+# modifying any existing .cspell.json in the project.
+curl -OLs https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/prepare-cspell.php
+php prepare-cspell.php -s .ddev
+rm prepare-cspell.php
+
+# Rename the temporary config file to match cspell's requirement that
+# configuration files must end in .json, then run the spell checker
+# with suggestions and context enabled.
+mv -f .cspell.json.ddev .cspell.ddev.json
+# Use absolute paths for PnP mode since we cd to core directory.
+run_cspell -c "$DDEV_COMPOSER_ROOT/.cspell.ddev.json" --show-suggestions --show-context --no-progress "$DDEV_COMPOSER_ROOT"/** "$@"
+
+# Clean-up temporary cspell files.
+rm .cspell.ddev.json
+[ "$TMP_DICTIONARY" == "1" ] && rm $_CSPELL_DICTIONARY || true
+[ "$TMP_CONFIG" == "1" ] && rm .cspell.json || true
