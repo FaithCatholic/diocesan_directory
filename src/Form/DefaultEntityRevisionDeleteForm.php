@@ -107,7 +107,7 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
     $this->DefaultEntityStorage->deleteRevision($this->revision->getRevisionId());
 
     $this->logger('content')->notice('Directory: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal\Core\Messenger\MessengerInterface::addMessage(t('Revision from %revision-date of Directory %title has been deleted.', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->messenger()->addMessage(t('Revision from %revision-date of Directory %title has been deleted.', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
     $form_state->setRedirect(
       'entity.directory.canonical',
        ['directory' => $this->revision->id()]

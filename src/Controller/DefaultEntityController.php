@@ -93,7 +93,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
           $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.directory.revision', ['directory' => $directory->id(), 'directory_revision' => $vid]));
         }
         else {
-          $link = \Drupal\Core\EntityInterface::toLink($date)->toString();
+          $link = $directory->toLink($date)->toString();
         }
 
         $row = [];
@@ -103,7 +103,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
             '#template' => '{% trans %}{{ date }} by {{ username }}{% endtrans %}{% if message %}<p class="revision-log">{{ message }}</p>{% endif %}',
             '#context' => [
               'date' => $link,
-              'username' => \Drupal::service('renderer')->renderPlain($username),
+              'username' => \Drupal::service('renderer')->renderInIsolation($username),
               'message' => ['#markup' => $revision->getRevisionLogMessage(), '#allowed_tags' => Xss::getHtmlTagList()],
             ],
           ],

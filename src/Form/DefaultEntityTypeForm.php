@@ -51,13 +51,13 @@ class DefaultEntityTypeForm extends EntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        \Drupal\Core\Messenger\MessengerInterface::addMessage($this->t('Created the %label Directory type.', [
+        $this->messenger()->addMessage($this->t('Created the %label Directory type.', [
           '%label' => $directory_type->label(),
         ]));
         break;
 
       default:
-        \Drupal\Core\Messenger\MessengerInterface::addMessage($this->t('Saved the %label Directory type.', [
+        $this->messenger()->addMessage($this->t('Saved the %label Directory type.', [
           '%label' => $directory_type->label(),
         ]));
     }

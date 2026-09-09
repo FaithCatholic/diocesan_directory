@@ -35,7 +35,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *     "revision_log_message" = "revision_log",
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/directory_type/{directory_type}",
  *     "add-form" = "/admin/structure/directory_type/add",
  *     "edit-form" = "/admin/structure/directory_type/{directory_type}/edit",
  *     "delete-form" = "/admin/structure/directory_type/{directory_type}/delete",
