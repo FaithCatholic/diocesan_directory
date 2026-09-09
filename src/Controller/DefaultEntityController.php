@@ -2,6 +2,7 @@
 
 namespace Drupal\diocesan_directory\Controller;
 
+use Drupal\Core\Link;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -90,7 +91,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $directory->getRevisionId()) {
-          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.directory.revision', ['directory' => $directory->id(), 'directory_revision' => $vid]));
+          $link = Link::fromTextAndUrl($date, new Url('entity.directory.revision', ['directory' => $directory->id(), 'directory_revision' => $vid]));
         }
         else {
           $link = $directory->toLink($date)->toString();

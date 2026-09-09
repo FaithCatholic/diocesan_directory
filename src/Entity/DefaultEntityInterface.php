@@ -4,8 +4,6 @@ namespace Drupal\diocesan_directory\Entity;
 
 use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\Core\Entity\RevisionableInterface;
-use Drupal\Component\Utility\Xss;
-use Drupal\Core\Url;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\user\EntityOwnerInterface;
 

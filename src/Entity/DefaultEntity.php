@@ -270,6 +270,6 @@ class DefaultEntity extends RevisionableContentEntityBase implements DefaultEnti
       $uri_route_parameters['directory_revision'] = TRUE;
     }
     return $uri_route_parameters;
-   }
-}
+  }
 
+}

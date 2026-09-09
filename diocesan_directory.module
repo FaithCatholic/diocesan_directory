@@ -5,6 +5,7 @@
  * Contains diocesan_directory.module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -42,8 +43,8 @@ function diocesan_directory_theme() {
 }
 
 /**
-* Implements hook_theme_suggestions_HOOK().
-*/
+ * Implements hook_theme_suggestions_HOOK().
+ */
 function diocesan_directory_theme_suggestions_directory(array $variables) {
   $suggestions = [];
   $entity = $variables['elements']['#directory'];
@@ -57,7 +58,10 @@ function diocesan_directory_theme_suggestions_directory(array $variables) {
   return $suggestions;
 }
 
-function diocesan_directory_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+/**
+ *
+ */
+function diocesan_directory_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Make name field longer.
   if ($form_id == 'directory_parishes_add_form' || $form_id == 'directory_parishes_edit_form') {
     $form['name']['widget'][0]['value']['#maxlength'] = 255;
