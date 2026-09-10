@@ -2,8 +2,9 @@
 
 namespace Drupal\diocesan_directory\Form;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\diocesan_directory\Entity\DefaultEntityInterface;
@@ -34,15 +35,17 @@ class DefaultEntityRevisionRevertTranslationForm extends DefaultEntityRevisionRe
   /**
    * Constructs a new DefaultEntityRevisionRevertTranslationForm.
    *
-   * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
-   *   The Directory storage.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   The time service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
    */
-  public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter, LanguageManagerInterface $language_manager) {
-    parent::__construct($entity_storage, $date_formatter);
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter, TimeInterface $time, LanguageManagerInterface $language_manager) {
+    parent::__construct($entity_type_manager, $date_formatter, $time);
     $this->languageManager = $language_manager;
   }
 
@@ -51,8 +54,9 @@ class DefaultEntityRevisionRevertTranslationForm extends DefaultEntityRevisionRe
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity_type.manager')->getStorage('directory'),
+      $container->get('entity_type.manager'),
       $container->get('date.formatter'),
+      $container->get('datetime.time'),
       $container->get('language_manager')
     );
   }
@@ -97,7 +101,7 @@ class DefaultEntityRevisionRevertTranslationForm extends DefaultEntityRevisionRe
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
     /** @var \Drupal\diocesan_directory\Entity\DefaultEntityInterface $default_revision */
-    $latest_revision = $this->defaultEntityStorage->load($revision->id());
+    $latest_revision = $this->entityTypeManager->getStorage('directory')->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 
     $revision_translation = $revision->getTranslation($this->langcode);
@@ -110,7 +114,7 @@ class DefaultEntityRevisionRevertTranslationForm extends DefaultEntityRevisionRe
 
     $latest_revision_translation->setNewRevision();
     $latest_revision_translation->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $latest_revision_translation;
   }

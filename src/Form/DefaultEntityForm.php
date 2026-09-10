@@ -44,8 +44,8 @@ class DefaultEntityForm extends ContentEntityForm {
       $entity->setNewRevision();
 
       // If a new revision is created, save the current user as revision author.
-      $entity->setRevisionCreationTime(\Drupal::time()->getRequestTime());
-      $entity->setRevisionUserId(\Drupal::currentUser()->id());
+      $entity->setRevisionCreationTime($this->time->getRequestTime());
+      $entity->setRevisionUserId($this->currentUser()->id());
     }
     else {
       $entity->setNewRevision(FALSE);
@@ -55,13 +55,13 @@ class DefaultEntityForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        \Drupal::messenger()->addMessage($this->t('Created the %label Directory.', [
+        $this->messenger()->addMessage($this->t('Created the %label Directory.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal::messenger()->addMessage($this->t('Saved the %label Directory.', [
+        $this->messenger()->addMessage($this->t('Saved the %label Directory.', [
           '%label' => $entity->label(),
         ]));
     }

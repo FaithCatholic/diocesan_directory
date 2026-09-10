@@ -3,7 +3,8 @@
 namespace Drupal\diocesan_directory\Form;
 
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -25,11 +26,11 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
   protected $revision;
 
   /**
-   * The Directory storage.
+   * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $defaultEntityStorage;
+  protected $entityTypeManager;
 
   /**
    * The database connection.
@@ -39,26 +40,36 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
   protected $connection;
 
   /**
+   * The date formatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * Constructs a new DefaultEntityRevisionDeleteForm.
    *
-   * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
-   *   The entity storage.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   The date formatter service.
    */
-  public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
-    $this->defaultEntityStorage = $entity_storage;
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, Connection $connection, DateFormatterInterface $date_formatter) {
+    $this->entityTypeManager = $entity_type_manager;
     $this->connection = $connection;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    $entity_manager = $container->get('entity_type.manager');
     return new static(
-      $entity_manager->getStorage('directory'),
-      $container->get('database')
+      $container->get('entity_type.manager'),
+      $container->get('database'),
+      $container->get('date.formatter')
     );
   }
 
@@ -73,7 +84,7 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime())]);
+    return t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
   }
 
   /**
@@ -94,7 +105,9 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $directory_revision = NULL) {
-    $this->revision = $this->defaultEntityStorage->loadRevision($directory_revision);
+    /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
+    $storage = $this->entityTypeManager->getStorage('directory');
+    $this->revision = $storage->loadRevision($directory_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -104,14 +117,16 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->defaultEntityStorage->deleteRevision($this->revision->getRevisionId());
+    /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
+    $storage = $this->entityTypeManager->getStorage('directory');
+    $storage->deleteRevision($this->revision->getRevisionId());
 
     $this->logger('content')->notice('Directory: deleted %title revision %revision.', [
       '%title' => $this->revision->label(),
       '%revision' => $this->revision->getRevisionId(),
     ]);
     $this->messenger()->addMessage(t('Revision from %revision-date of Directory %title has been deleted.', [
-      '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
       '%title' => $this->revision->label(),
     ]));
     $form_state->setRedirect(

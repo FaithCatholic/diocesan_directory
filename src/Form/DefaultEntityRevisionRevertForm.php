@@ -2,8 +2,9 @@
 
 namespace Drupal\diocesan_directory\Form;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -26,11 +27,11 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
   protected $revision;
 
   /**
-   * The Directory storage.
+   * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $defaultEntityStorage;
+  protected $entityTypeManager;
 
   /**
    * The date formatter service.
@@ -40,16 +41,26 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
   protected $dateFormatter;
 
   /**
+   * The time service.
+   *
+   * @var \Drupal\Component\Datetime\TimeInterface
+   */
+  protected $time;
+
+  /**
    * Constructs a new DefaultEntityRevisionRevertForm.
    *
-   * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
-   *   The Directory storage.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   The time service.
    */
-  public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
-    $this->defaultEntityStorage = $entity_storage;
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter, TimeInterface $time) {
+    $this->entityTypeManager = $entity_type_manager;
     $this->dateFormatter = $date_formatter;
+    $this->time = $time;
   }
 
   /**
@@ -57,8 +68,9 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity_type.manager')->getStorage('directory'),
-      $container->get('date.formatter')
+      $container->get('entity_type.manager'),
+      $container->get('date.formatter'),
+      $container->get('datetime.time')
     );
   }
 
@@ -101,7 +113,9 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $directory_revision = NULL) {
-    $this->revision = $this->defaultEntityStorage->loadRevision($directory_revision);
+    /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
+    $storage = $this->entityTypeManager->getStorage('directory');
+    $this->revision = $storage->loadRevision($directory_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -147,7 +161,7 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(DefaultEntityInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $revision;
   }

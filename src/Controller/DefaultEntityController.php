@@ -4,10 +4,13 @@ namespace Drupal\diocesan_directory\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\diocesan_directory\Entity\DefaultEntityInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class DefaultEntityController.
@@ -19,6 +22,43 @@ use Drupal\diocesan_directory\Entity\DefaultEntityInterface;
 class DefaultEntityController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
+   * The date formatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
+   * Constructs a new DefaultEntityController.
+   *
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   The date formatter service.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
+   */
+  public function __construct(DateFormatterInterface $date_formatter, RendererInterface $renderer) {
+    $this->dateFormatter = $date_formatter;
+    $this->renderer = $renderer;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('date.formatter'),
+      $container->get('renderer')
+    );
+  }
+
+  /**
    * Displays a Directory  revision.
    *
    * @param int $directory_revision
@@ -28,7 +68,9 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
    *   An array suitable for drupal_render().
    */
   public function revisionShow($directory_revision) {
-    $directory = $this->entityTypeManager()->getStorage('directory')->loadRevision($directory_revision);
+    /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
+    $storage = $this->entityTypeManager()->getStorage('directory');
+    $directory = $storage->loadRevision($directory_revision);
     $view_builder = $this->entityTypeManager()->getViewBuilder('directory');
 
     return $view_builder->view($directory);
@@ -44,10 +86,12 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
    *   The page title.
    */
   public function revisionPageTitle($directory_revision) {
-    $directory = $this->entityTypeManager()->getStorage('directory')->loadRevision($directory_revision);
+    /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
+    $storage = $this->entityTypeManager()->getStorage('directory');
+    $directory = $storage->loadRevision($directory_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $directory->label(),
-      '%date' => \Drupal::service('date.formatter')->format($directory->getRevisionCreationTime()),
+      '%date' => $this->dateFormatter->format($directory->getRevisionCreationTime()),
     ]);
   }
 
@@ -66,6 +110,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
     $langname = $directory->language()->getName();
     $languages = $directory->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
+    /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $directory_storage */
     $directory_storage = $this->entityTypeManager()->getStorage('directory');
 
     $build['#title'] = $has_translations
@@ -86,7 +131,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
     $latest_revision = TRUE;
 
     foreach (array_reverse($vids) as $vid) {
-      /** @var \Drupal\diocesan_directory\DefaultEntityInterface $revision */
+      /** @var \Drupal\diocesan_directory\Entity\DefaultEntityInterface $revision */
       $revision = $directory_storage->loadRevision($vid);
       // Only show revisions that are affected by the language that is being
       // displayed.
@@ -97,7 +142,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
         ];
 
         // Use revision link to link to revisions that are not active.
-        $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
+        $date = $this->dateFormatter->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $directory->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.directory.revision', [
             'directory' => $directory->id(),
@@ -115,7 +160,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
             '#template' => '{% trans %}{{ date }} by {{ username }}{% endtrans %}{% if message %}<p class="revision-log">{{ message }}</p>{% endif %}',
             '#context' => [
               'date' => $link,
-              'username' => \Drupal::service('renderer')->renderInIsolation($username),
+              'username' => $this->renderer->renderInIsolation($username),
               'message' => ['#markup' => $revision->getRevisionLogMessage(), '#allowed_tags' => Xss::getHtmlTagList()],
             ],
           ],
