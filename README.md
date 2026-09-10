@@ -62,9 +62,9 @@ the admin view.
 
 The repository ships a DDEV setup based on
 [ddev-drupal-contrib](https://github.com/ddev/ddev-drupal-contrib) with the
-[drupal-contrib-extras](https://github.com/brooksdigital/ddev-drupal-contrib-extras),
-[pimp-my-shell](https://github.com/brooksdigital/ddev-pimp-my-shell) and
-[ddev-drupal](https://github.com/ddev/ddev-drupal) add-ons.
+[drupal-contrib-extras](https://github.com/hanoii/ddev-drupal-contrib-extras),
+[pimp-my-shell](https://github.com/hanoii/ddev-pimp-my-shell) and
+[ddev-drupal](https://github.com/hanoii/ddev-drupal) add-ons.
 
 - `ddev start` runs the bootstrap on first start: `poser` builds a Drupal 11
   project in `web/` and `vendor/` (both git-ignored), installs the site,
