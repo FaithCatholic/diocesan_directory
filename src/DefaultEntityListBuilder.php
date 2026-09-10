@@ -16,6 +16,9 @@ class DefaultEntityListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   A render array structure of header strings.
    */
   public function buildHeader() {
     $header['id'] = $this->t('Directory ID');
@@ -25,6 +28,12 @@ class DefaultEntityListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity for this row of the list.
+   *
+   * @return array<string, mixed>
+   *   A render array structure of fields for this entity.
    */
   public function buildRow(EntityInterface $entity) {
     /** @var \Drupal\diocesan_directory\Entity\DefaultEntity $entity */

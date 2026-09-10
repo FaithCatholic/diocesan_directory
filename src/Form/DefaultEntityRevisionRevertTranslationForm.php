@@ -80,6 +80,18 @@ class DefaultEntityRevisionRevertTranslationForm extends DefaultEntityRevisionRe
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   * @param int|string|null $directory_revision
+   *   The Directory revision ID.
+   * @param string|null $langcode
+   *   The language code of the translation to revert.
+   *
+   * @return array<string, mixed>
+   *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state, $directory_revision = NULL, $langcode = NULL) {
     $this->langcode = $langcode;
@@ -100,7 +112,7 @@ class DefaultEntityRevisionRevertTranslationForm extends DefaultEntityRevisionRe
   protected function prepareRevertedRevision(DefaultEntityInterface $revision, FormStateInterface $form_state) {
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
-    /** @var \Drupal\diocesan_directory\Entity\DefaultEntityInterface $default_revision */
+    /** @var \Drupal\diocesan_directory\Entity\DefaultEntityInterface $latest_revision */
     $latest_revision = $this->entityTypeManager->getStorage('directory')->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 

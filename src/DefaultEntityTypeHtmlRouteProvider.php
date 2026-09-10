@@ -54,6 +54,7 @@ class DefaultEntityTypeHtmlRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+    return NULL;
   }
 
 }

@@ -47,6 +47,12 @@ class DefaultEntityStorage extends SqlContentEntityStorage implements DefaultEnt
 
   /**
    * {@inheritdoc}
+   *
+   * @param \Drupal\Core\Language\LanguageInterface $language
+   *   The language object.
+   *
+   * @return int|null
+   *   The number of rows affected by the update query.
    */
   public function clearRevisionsLanguage(LanguageInterface $language) {
     return $this->database->update('directory_revision')

@@ -55,6 +55,9 @@ interface DefaultEntityStorageInterface extends ContentEntityStorageInterface {
    *
    * @param \Drupal\Core\Language\LanguageInterface $language
    *   The language object.
+   *
+   * @return int|null
+   *   The number of rows affected by the update query.
    */
   public function clearRevisionsLanguage(LanguageInterface $language);
 

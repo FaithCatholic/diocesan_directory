@@ -12,6 +12,9 @@ class DefaultEntityTypeListBuilder extends ConfigEntityListBuilder {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   A render array structure of header strings.
    */
   public function buildHeader() {
     $header['label'] = $this->t('Directory type');
@@ -21,6 +24,12 @@ class DefaultEntityTypeListBuilder extends ConfigEntityListBuilder {
 
   /**
    * {@inheritdoc}
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity for this row of the list.
+   *
+   * @return array<string, mixed>
+   *   A render array structure of fields for this entity.
    */
   public function buildRow(EntityInterface $entity) {
     $row['label'] = $entity->label();

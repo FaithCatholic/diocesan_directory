@@ -14,9 +14,16 @@ class DefaultEntityForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return array<string, mixed>
+   *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /** @var \Drupal\diocesan_directory\Entity\DefaultEntity $entity */
     $form = parent::buildForm($form, $form_state);
 
     if (!$this->entity->isNew()) {
@@ -28,13 +35,19 @@ class DefaultEntityForm extends ContentEntityForm {
       ];
     }
 
-    $entity = $this->entity;
-
     return $form;
   }
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return int
+   *   Either SAVED_NEW or SAVED_UPDATED, depending on the operation performed.
    */
   public function save(array $form, FormStateInterface $form_state) {
     $entity = &$this->entity;
@@ -66,6 +79,7 @@ class DefaultEntityForm extends ContentEntityForm {
         ]));
     }
     $form_state->setRedirect('entity.directory.canonical', ['directory' => $entity->id()]);
+    return $status;
   }
 
 }

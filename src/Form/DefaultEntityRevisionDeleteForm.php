@@ -8,7 +8,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\diocesan_directory\Entity\DefaultEntityInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Provides a form for deleting a Directory revision.
@@ -103,11 +105,25 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   * @param int|string|null $directory_revision
+   *   The Directory revision ID.
+   *
+   * @return array<string, mixed>
+   *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state, $directory_revision = NULL) {
     /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
     $storage = $this->entityTypeManager->getStorage('directory');
-    $this->revision = $storage->loadRevision($directory_revision);
+    $revision = $storage->loadRevision($directory_revision);
+    if (!$revision instanceof DefaultEntityInterface) {
+      throw new NotFoundHttpException();
+    }
+    $this->revision = $revision;
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -115,8 +131,13 @@ class DefaultEntityRevisionDeleteForm extends ConfirmFormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
     /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
     $storage = $this->entityTypeManager->getStorage('directory');
     $storage->deleteRevision($this->revision->getRevisionId());

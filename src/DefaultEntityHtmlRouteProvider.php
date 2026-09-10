@@ -76,6 +76,7 @@ class DefaultEntityHtmlRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+    return NULL;
   }
 
   /**
@@ -100,6 +101,7 @@ class DefaultEntityHtmlRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+    return NULL;
   }
 
   /**
@@ -124,6 +126,7 @@ class DefaultEntityHtmlRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+    return NULL;
   }
 
   /**
@@ -148,6 +151,7 @@ class DefaultEntityHtmlRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+    return NULL;
   }
 
   /**
@@ -172,6 +176,7 @@ class DefaultEntityHtmlRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+    return NULL;
   }
 
   /**
@@ -196,6 +201,7 @@ class DefaultEntityHtmlRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+    return NULL;
   }
 
   /**
@@ -220,6 +226,7 @@ class DefaultEntityHtmlRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+    return NULL;
   }
 
 }

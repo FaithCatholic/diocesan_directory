@@ -81,7 +81,7 @@ class DefaultEntity extends RevisionableContentEntityBase implements DefaultEnti
   /**
    * {@inheritdoc}
    */
-  public static function preCreate(EntityStorageInterface $storage_controller, array &$values) {
+  public static function preCreate(EntityStorageInterface $storage_controller, array &$values): void {
     parent::preCreate($storage_controller, $values);
     $values += [
       'user_id' => \Drupal::currentUser()->id(),
@@ -91,7 +91,7 @@ class DefaultEntity extends RevisionableContentEntityBase implements DefaultEnti
   /**
    * {@inheritdoc}
    */
-  public function preSave(EntityStorageInterface $storage) {
+  public function preSave(EntityStorageInterface $storage): void {
     parent::preSave($storage);
 
     foreach (array_keys($this->getTranslationLanguages()) as $langcode) {
@@ -142,16 +142,20 @@ class DefaultEntity extends RevisionableContentEntityBase implements DefaultEnti
 
   /**
    * {@inheritdoc}
+   *
+   * @return \Drupal\user\UserInterface|null
+   *   The owner user entity, or NULL if none has been set.
    */
   public function getOwner() {
-    return $this->get('user_id')->entity;
+    $owner = $this->get('user_id')->entity;
+    return $owner instanceof UserInterface ? $owner : NULL;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getOwnerId() {
-    return $this->get('user_id')->target_id;
+    return $this->getEntityKey('uid');
   }
 
   /**
@@ -263,6 +267,12 @@ class DefaultEntity extends RevisionableContentEntityBase implements DefaultEnti
 
   /**
    * {@inheritdoc}
+   *
+   * @param string $rel
+   *   The link relationship type, for example: canonical or edit-form.
+   *
+   * @return array<string, mixed>
+   *   An array of URI placeholders.
    */
   protected function urlRouteParameters($rel) {
     $uri_route_parameters = parent::urlRouteParameters($rel);

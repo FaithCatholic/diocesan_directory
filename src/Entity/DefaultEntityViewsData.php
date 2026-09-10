@@ -11,6 +11,9 @@ class DefaultEntityViewsData extends EntityViewsData {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   The Views data.
    */
   public function getViewsData() {
     $data = parent::getViewsData();

@@ -14,12 +14,12 @@ use Drupal\Core\Render\Element;
  *
  * Default template: directory.html.twig.
  *
- * @param array $variables
+ * @param array<string, mixed> $variables
  *   An associative array containing:
  *   - elements: An associative array containing the user information and any
  *   - attributes: HTML attributes for the containing element.
  */
-function template_preprocess_directory(array &$variables) {
+function template_preprocess_directory(array &$variables): void {
   // Fetch DefaultEntity Entity Object.
   $directory = $variables['elements']['#directory'];
 

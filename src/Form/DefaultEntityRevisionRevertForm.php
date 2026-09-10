@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\diocesan_directory\Entity\DefaultEntityInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Provides a form for reverting a Directory revision.
@@ -111,11 +112,25 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   * @param int|string|null $directory_revision
+   *   The Directory revision ID.
+   *
+   * @return array<string, mixed>
+   *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state, $directory_revision = NULL) {
     /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
     $storage = $this->entityTypeManager->getStorage('directory');
-    $this->revision = $storage->loadRevision($directory_revision);
+    $revision = $storage->loadRevision($directory_revision);
+    if (!$revision instanceof DefaultEntityInterface) {
+      throw new NotFoundHttpException();
+    }
+    $this->revision = $revision;
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -123,14 +138,19 @@ class DefaultEntityRevisionRevertForm extends ConfirmFormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
     // The revision timestamp will be updated when the revision is saved. Keep
     // the original one for the confirmation message.
     $original_revision_timestamp = $this->revision->getRevisionCreationTime();
 
     $this->revision = $this->prepareRevertedRevision($this->revision, $form_state);
-    $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
+    $this->revision->setRevisionLogMessage(t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]));
     $this->revision->save();
 
     $this->logger('content')->notice('Directory: reverted %title revision %revision.', [

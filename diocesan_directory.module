@@ -11,7 +11,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 /**
  * Implements hook_help().
  */
-function diocesan_directory_help($route_name, RouteMatchInterface $route_match) {
+function diocesan_directory_help(string $route_name, RouteMatchInterface $route_match): ?string {
   switch ($route_name) {
     // Main module help for the diocesan_directory module.
     case 'help.page.diocesan_directory':
@@ -21,13 +21,16 @@ function diocesan_directory_help($route_name, RouteMatchInterface $route_match) 
       return $output;
 
     default:
+      return NULL;
   }
 }
 
 /**
  * Implements hook_theme().
+ *
+ * @phpstan-return array<string, mixed>
  */
-function diocesan_directory_theme() {
+function diocesan_directory_theme(): array {
   $theme = [];
   $theme['directory'] = [
     'render element' => 'elements',
@@ -44,8 +47,11 @@ function diocesan_directory_theme() {
 
 /**
  * Implements hook_theme_suggestions_HOOK().
+ *
+ * @phpstan-param array<string, mixed> $variables
+ * @phpstan-return string[]
  */
-function diocesan_directory_theme_suggestions_directory(array $variables) {
+function diocesan_directory_theme_suggestions_directory(array $variables): array {
   $suggestions = [];
   $entity = $variables['elements']['#directory'];
   $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
@@ -60,8 +66,10 @@ function diocesan_directory_theme_suggestions_directory(array $variables) {
 
 /**
  * Implements hook_form_alter().
+ *
+ * @phpstan-param array<string, mixed> $form
  */
-function diocesan_directory_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function diocesan_directory_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   // Make name field longer.
   if ($form_id == 'directory_parishes_add_form' || $form_id == 'directory_parishes_edit_form') {
     $form['name']['widget'][0]['value']['#maxlength'] = 255;

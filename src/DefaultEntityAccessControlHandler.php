@@ -39,6 +39,17 @@ class DefaultEntityAccessControlHandler extends EntityAccessControlHandler {
 
   /**
    * {@inheritdoc}
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   The user for which to check access.
+   * @param array<string, mixed> $context
+   *   An array of key-value pairs to pass additional context when needed.
+   * @param string|null $entity_bundle
+   *   (optional) The bundle of the entity. Required if the entity supports
+   *   bundles, defaults to NULL otherwise.
+   *
+   * @return \Drupal\Core\Access\AccessResultInterface
+   *   The access result.
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
     return AccessResult::allowedIfHasPermission($account, 'add directory entities');

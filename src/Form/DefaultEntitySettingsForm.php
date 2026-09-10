@@ -27,24 +27,24 @@ class DefaultEntitySettingsForm extends FormBase {
   /**
    * Form submission handler.
    *
-   * @param array $form
+   * @param array<string, mixed> $form
    *   An associative array containing the structure of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
     // Empty implementation of the abstract submit class.
   }
 
   /**
    * Defines the settings form for Directory entities.
    *
-   * @param array $form
+   * @param array<string, mixed> $form
    *   An associative array containing the structure of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    *
-   * @return array
+   * @return array<string, mixed>
    *   Form definition array.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {

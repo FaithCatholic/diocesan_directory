@@ -14,6 +14,14 @@ class DefaultEntityTypeForm extends EntityForm {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return array<string, mixed>
+   *   The form structure.
    */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
@@ -44,6 +52,14 @@ class DefaultEntityTypeForm extends EntityForm {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return int
+   *   Either SAVED_NEW or SAVED_UPDATED, depending on the operation performed.
    */
   public function save(array $form, FormStateInterface $form_state) {
     $directory_type = $this->entity;
@@ -62,6 +78,7 @@ class DefaultEntityTypeForm extends EntityForm {
         ]));
     }
     $form_state->setRedirectUrl($directory_type->toUrl('collection'));
+    return $status;
   }
 
 }

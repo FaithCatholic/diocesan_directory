@@ -11,6 +11,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\diocesan_directory\Entity\DefaultEntityInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class DefaultEntityController.
@@ -64,13 +65,16 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
    * @param int $directory_revision
    *   The Directory  revision ID.
    *
-   * @return array
+   * @return array<string, mixed>
    *   An array suitable for drupal_render().
    */
   public function revisionShow($directory_revision) {
     /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
     $storage = $this->entityTypeManager()->getStorage('directory');
     $directory = $storage->loadRevision($directory_revision);
+    if (!$directory instanceof DefaultEntityInterface) {
+      throw new NotFoundHttpException();
+    }
     $view_builder = $this->entityTypeManager()->getViewBuilder('directory');
 
     return $view_builder->view($directory);
@@ -89,6 +93,9 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
     /** @var \Drupal\diocesan_directory\DefaultEntityStorageInterface $storage */
     $storage = $this->entityTypeManager()->getStorage('directory');
     $directory = $storage->loadRevision($directory_revision);
+    if (!$directory instanceof DefaultEntityInterface) {
+      throw new NotFoundHttpException();
+    }
     return $this->t('Revision of %title from %date', [
       '%title' => $directory->label(),
       '%date' => $this->dateFormatter->format($directory->getRevisionCreationTime()),
@@ -101,7 +108,7 @@ class DefaultEntityController extends ControllerBase implements ContainerInjecti
    * @param \Drupal\diocesan_directory\Entity\DefaultEntityInterface $directory
    *   A Directory  object.
    *
-   * @return array
+   * @return array<string, mixed>
    *   An array as expected by drupal_render().
    */
   public function revisionOverview(DefaultEntityInterface $directory) {
