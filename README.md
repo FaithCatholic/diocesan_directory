@@ -81,13 +81,12 @@ The repository ships a DDEV setup based on
 
 ## Known issues and notes
 
-- `config/install/field.storage.mass_times.field_parish` has no `.yml`
-  extension, so it is never installed. It defines a field on a `mass_times`
-  entity type that this module does not provide; it looks like a leftover from
-  a sibling module and can probably be deleted.
-- `DefaultEntitySettingsForm` and the `directory.settings` route are never
-  registered, because the route provider only adds them for entity types
-  without bundles. The class is dead code.
+- `DefaultEntitySettingsForm` is referenced by
+  `DefaultEntityHtmlRouteProvider::getSettingsFormRoute()`, but that method
+  only registers the `directory.settings` route for entity types without a
+  bundle entity type. Because the `directory` entity declares
+  `bundle_entity_type = "directory_type"`, the route is never added and the
+  form is unreachable. It is kept in case a settings route is wanted later.
 - The two entity types still use `@ContentEntityType` and `@ConfigEntityType`
   annotations. They should move to PHP attributes before Drupal 12.
 - The procedural functions in `diocesan_directory.module` only exist so the
