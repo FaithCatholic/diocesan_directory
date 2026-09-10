@@ -1,0 +1,6 @@
+services:
+  # Drupal 11 auto-registers classes in src/Hook, but only if no definition
+  # exists. Declaring it here keeps the service resolvable on Drupal 10, where
+  # the legacy procedural hooks delegate to it.
+  Drupal\diocesan_directory\Hook\DiocesanDirectoryHooks:
+    autowire: true
